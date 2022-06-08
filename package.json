@@ -47,5 +47,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://api.petfinder.com"
+  "proxy": "http://api.petfinder.com",
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
+  }
 }
