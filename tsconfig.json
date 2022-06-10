@@ -18,7 +18,6 @@
     "noEmit": true,
     "jsx": "react"
   },
-  "react-scripts": "5.0.0",
   "name": "who-rescued-who",
   "scripts": {
     "start": "react-scripts start",
