@@ -1,4 +1,6 @@
 {
+  "include": ["src"],
+  "homepage": "https://github.com/nbrustin/who-rescued-who",
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -16,8 +18,8 @@
     "noEmit": true,
     "jsx": "react"
   },
-  "include": ["src"],
-  "homepage": "https://github.com/nbrustin/who-rescued-who",
+  "react-scripts": "5.0.0",
+  "name": "who-rescued-who",
   "scripts": {
     "start": "react-scripts start",
     "predeploy": "npm run build",
