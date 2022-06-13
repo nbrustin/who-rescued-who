@@ -17,6 +17,7 @@ import { isAsyncFunction } from "util/types";
 let access = "";
 let animal = "dog";
 let pageCount = 0;
+let currentPage = 1;
 
 const Search = () => {
   const [posts, setPosts] = useState<PostType[]>([]);
@@ -27,18 +28,15 @@ const Search = () => {
       .then((response: any) => {
         access = response.access_token;
         Post.getPosts(1, animal, access).then((data: any) => {
-          debugger;
           pageCount = data.pagination.total_pages;
           setPosts(data.animals);
           setLoading(false);
         });
       })
       .catch(err => {
-        // setIsError(true);
         console.log("errorr");
       });
     return () => {};
-    // getAccessToken();
   }, []);
 
   const getAccessToken = async () => {
@@ -61,7 +59,6 @@ const Search = () => {
 
     axios(config)
       .then(function(response: any) {
-        // console.log(JSON.stringify(response.data));
         {
           access = response.data.access_token;
         }
@@ -101,19 +98,15 @@ const Search = () => {
   `;
 
   const FadeLoaderProps = {
-    // make sure all required component's inputs/Props keys&types match
     css: override,
     size: 500
   };
 
   const handlePageClick = async (event: any) => {
-    debugger;
     setLoading(true);
     const currentPage = event.selected + 1;
 
-    // getAllAnimals(currentPage);
     Post.getPosts(currentPage, animal, access).then((data: any) => {
-      debugger;
       pageCount = data.pagination.total_pages;
       setPosts(data.animals);
       setLoading(false);
@@ -121,10 +114,13 @@ const Search = () => {
   };
 
   const handleSelect = (event: any) => {
-    debugger;
     console.log(event);
     animal = event;
-    // getAllAnimals();
+    Post.getPosts(currentPage, animal, access).then((data: any) => {
+      pageCount = data.pagination.total_pages;
+      setPosts(data.animals);
+      setLoading(false);
+    });
   };
 
   if (loading === true) {
@@ -141,12 +137,7 @@ const Search = () => {
           <Dropdown.Item eventKey="cat">Cat</Dropdown.Item>
         </DropdownButton>
 
-        <Animals
-          posts={posts}
-          // page={page}
-          // handlePageClick={handlePageClick}
-          // pageCount={pageCount}
-        />
+        <Animals posts={posts} />
         <ReactPaginate
           breakLabel="..."
           nextLabel="next >"
@@ -157,7 +148,6 @@ const Search = () => {
           containerClassName={"pagination"}
           activeClassName={"active"}
           activeLinkClassName={"active"}
-          // renderOnZeroPageCount={null}
         />
       </Container>
     );

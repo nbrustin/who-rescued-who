@@ -31,12 +31,6 @@ const PaginateTest = () => {
     return (
       <>
         <PaginateTestCars cars={cars} itemIndex={itemIndex} />
-        {/* {items.map((item, index) => {
-        debugger;
-        if (index === itemIndex) {
-          return item;
-        }
-      })} */}
         <ReactPaginate
           breakLabel="..."
           nextLabel="next >"

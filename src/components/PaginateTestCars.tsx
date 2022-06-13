@@ -10,7 +10,6 @@ const PaginateTestCars = ({
   return (
     <>
       {cars.map((car: any, index: number) => {
-        debugger;
         if (index === itemIndex) {
           return car;
         }
