@@ -2,7 +2,7 @@
   "name": "who-rescued-who",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/nbrustin/who-rescued-who",
+  "homepage": "https://nbrustin.github.io/who-rescued-who/",
   "dependencies": {
     "@emotion/babel-plugin": "^11.7.2",
     "@testing-library/jest-dom": "^5.16.1",
