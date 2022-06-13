@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/nbrustin/who-rescued-who/static/css/main.c5d09b2c.css",
+    "main.js": "/nbrustin/who-rescued-who/static/js/main.b53ff0d0.js",
+    "static/js/787.9067e721.chunk.js": "/nbrustin/who-rescued-who/static/js/787.9067e721.chunk.js",
+    "static/media/no-image-found-dog.png": "/nbrustin/who-rescued-who/static/media/no-image-found-dog.0cdb3c857e660e46eb73.png",
+    "index.html": "/nbrustin/who-rescued-who/index.html",
+    "main.c5d09b2c.css.map": "/nbrustin/who-rescued-who/static/css/main.c5d09b2c.css.map",
+    "main.b53ff0d0.js.map": "/nbrustin/who-rescued-who/static/js/main.b53ff0d0.js.map",
+    "787.9067e721.chunk.js.map": "/nbrustin/who-rescued-who/static/js/787.9067e721.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c5d09b2c.css",
+    "static/js/main.b53ff0d0.js"
+  ]
+}
