@@ -1,7 +1,5 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { Card, Col, Button } from "react-bootstrap";
 import fallbackImageDog from "../Assets/no-image-found-dog.png";
 import fallbackImageCat from "../Assets/no-image-found-cat.gif";
 
@@ -9,22 +7,25 @@ interface Props {
   animal: any;
 }
 
+const handleFavorite = (e: any) => {
+  e.preventDefault();
+  console.log(e);
+};
+
 const Animal = ({ animal }: { animal: any }) => {
   const objectFitStyle = animal.photos.length !== 0 ? "cover" : "contain";
   const fallBackImageAnimal =
     animal.type.toLowerCase() === "dog" ? fallbackImageDog : fallbackImageCat;
   return (
     <Col md={3} key={animal.id} className="my-4">
-      <Card
-        onClick={() => window.open(animal.url, "_blank")}
-        className="h-100"
-        style={{ borderRadius: "8px", cursor: "pointer" }}
-      >
+      <Card className="h-100" style={{ borderRadius: "8px" }}>
         <Card.Img
+          onClick={() => window.open(animal.url, "_blank")}
           style={{
             height: "40vh",
             objectFit: objectFitStyle,
-            width: "100%"
+            width: "100%",
+            cursor: "pointer"
           }}
           variant="top"
           src={
@@ -43,6 +44,11 @@ const Animal = ({ animal }: { animal: any }) => {
           <div className="row">
             <Card.Text className="col-md-6">{animal.age}</Card.Text>
             <Card.Text className="col-md-6">{animal.breeds.primary}</Card.Text>
+          </div>
+          <div className="row">
+            <Button type="button" variant="danger" onClick={handleFavorite}>
+              Favorite
+            </Button>
           </div>
         </Card.Body>
       </Card>

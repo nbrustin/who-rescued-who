@@ -1,18 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
-import axios, { AxiosResponse, AxiosError } from "axios";
-import { Row, Dropdown, DropdownButton } from "react-bootstrap";
+import { Dropdown, DropdownButton } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Animals from "./Animals";
-import Animal from "./Animal";
 import FadeLoader from "react-spinners/FadeLoader";
 import { css } from "@emotion/react";
 import ReactPaginate from "react-paginate";
 import { PostType } from "../api/api.interface";
 import { Post } from "../api/api";
-import { async, promised } from "q";
-// import { access } from "fs";
-import { waitFor } from "@testing-library/dom";
-import { isAsyncFunction } from "util/types";
 
 let access = "";
 let animal = "dog";
@@ -28,7 +22,6 @@ const Search = () => {
       .then((response: any) => {
         access = response.access_token;
         Post.getPosts(1, animal, access).then((data: any) => {
-          debugger;
           pageCount = data.pagination.total_pages;
           setPosts(data.animals);
           setLoading(false);
