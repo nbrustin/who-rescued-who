@@ -28,6 +28,7 @@ const Search = () => {
       .then((response: any) => {
         access = response.access_token;
         Post.getPosts(1, animal, access).then((data: any) => {
+          debugger;
           pageCount = data.pagination.total_pages;
           setPosts(data.animals);
           setLoading(false);
@@ -103,13 +104,11 @@ const Search = () => {
   };
 
   const handlePageClick = async (event: any) => {
-    setLoading(true);
     const currentPage = event.selected + 1;
 
     Post.getPosts(currentPage, animal, access).then((data: any) => {
       pageCount = data.pagination.total_pages;
       setPosts(data.animals);
-      setLoading(false);
     });
   };
 
