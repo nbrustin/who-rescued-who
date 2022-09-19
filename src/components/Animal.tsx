@@ -3,24 +3,13 @@ import { Card, Col, Button } from "react-bootstrap";
 import fallbackImageDog from "../Assets/no-image-found-dog.png";
 import fallbackImageCat from "../Assets/no-image-found-cat.gif";
 
-const handleFavorite = (animal: object) => {
-  console.log(animal);
+const handleFavorite = (animal: any) => {
   const animalFavorites = JSON.parse(
     sessionStorage.getItem("ANIMAL_FAVORITES") || "[]"
   );
-
   animalFavorites.push(animal);
-
   sessionStorage.setItem("ANIMAL_FAVORITES", JSON.stringify(animalFavorites));
-  //so, need to add this animal info to my favorites array. how do i get all the info? figured it out! now i know!
-  //add this animal to favorites array lets just assume we're adding this for now. i think we should pass this to Search.
-  console.log(animalFavorites);
-  //add this animal to local storage
-  // const newAnimalFavorites = [...animalFavorites, animal]
-};
-
-const saveToSessionStorage = (animals: any) => {
-  sessionStorage.setItem("ANIMAL_FAVORITES", JSON.stringify(animals));
+  alert(`${animal.name} added to favorites!`);
 };
 
 const Animal = ({ animal }: { animal: any }) => {
@@ -37,6 +26,7 @@ const Animal = ({ animal }: { animal: any }) => {
             objectFit: objectFitStyle,
             width: "100%",
             cursor: "pointer",
+            padding: "10px",
           }}
           variant="top"
           src={

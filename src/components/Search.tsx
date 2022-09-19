@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Dropdown, DropdownButton } from "react-bootstrap";
-import Container from "react-bootstrap/Container";
 import Animals from "./Animals";
 import FadeLoader from "react-spinners/FadeLoader";
 import { css } from "@emotion/react";
@@ -67,7 +66,7 @@ const Search = () => {
     return <FadeLoader {...FadeLoaderProps} />;
   } else {
     return (
-      <Container>
+      <>
         <DropdownButton
           id="dropdown-basic-button"
           title="Animal"
@@ -89,7 +88,7 @@ const Search = () => {
           activeClassName={"active"}
           activeLinkClassName={"active"}
         />
-      </Container>
+      </>
     );
   }
 };

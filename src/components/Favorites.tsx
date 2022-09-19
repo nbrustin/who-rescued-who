@@ -11,10 +11,12 @@ const Favorites = () => {
       setFavorites(JSON.parse(animalFavorites));
     }
   }, []);
-  //map over the favorites...
   return (
     <>
       <h1 className="text-center">Favorites</h1>
+      <h3 className={favorites.length !== 0 ? "d-none mt-4" : "mt-4"}>
+        No favorites added...yet!
+      </h3>
       <Animals posts={favorites} />
     </>
   );

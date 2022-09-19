@@ -1,3 +1,9 @@
 ul {
   list-style-type: none;
+  padding-left: 0;
+  color: green;
+}
+
+li > a {
+  color: #076407;
 }
