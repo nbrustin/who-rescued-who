@@ -20,6 +20,7 @@ const Search = () => {
   useEffect(() => {
     Post.getAccess()
       .then((response: any) => {
+        debugger
         access = response.access_token;
         Post.getPosts(1, animal, access).then((data: any) => {
           pageCount = data.pagination.total_pages;
