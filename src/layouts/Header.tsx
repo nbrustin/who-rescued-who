@@ -14,7 +14,7 @@ const Header = () => {
       <div className="d-flex justify-content-center mb-3">
         <nav>
           <ul className="d-flex d-inline-flex">
-            <li className="mr-4">
+            <li style={{ marginRight: "10px" }}>
               <Link to="/who-rescued-who">Home</Link>
             </li>
             <li>

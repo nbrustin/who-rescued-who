@@ -3,13 +3,24 @@ import { Card, Col, Button } from "react-bootstrap";
 import fallbackImageDog from "../Assets/no-image-found-dog.png";
 import fallbackImageCat from "../Assets/no-image-found-cat.gif";
 
-interface Props {
-  animal: any;
-}
+const handleFavorite = (animal: object) => {
+  console.log(animal);
+  const animalFavorites = JSON.parse(
+    sessionStorage.getItem("ANIMAL_FAVORITES") || "[]"
+  );
 
-const handleFavorite = (e: any) => {
-  e.preventDefault();
-  console.log(e);
+  animalFavorites.push(animal);
+
+  sessionStorage.setItem("ANIMAL_FAVORITES", JSON.stringify(animalFavorites));
+  //so, need to add this animal info to my favorites array. how do i get all the info? figured it out! now i know!
+  //add this animal to favorites array lets just assume we're adding this for now. i think we should pass this to Search.
+  console.log(animalFavorites);
+  //add this animal to local storage
+  // const newAnimalFavorites = [...animalFavorites, animal]
+};
+
+const saveToSessionStorage = (animals: any) => {
+  sessionStorage.setItem("ANIMAL_FAVORITES", JSON.stringify(animals));
 };
 
 const Animal = ({ animal }: { animal: any }) => {
@@ -25,7 +36,7 @@ const Animal = ({ animal }: { animal: any }) => {
             height: "40vh",
             objectFit: objectFitStyle,
             width: "100%",
-            cursor: "pointer"
+            cursor: "pointer",
           }}
           variant="top"
           src={
@@ -46,7 +57,11 @@ const Animal = ({ animal }: { animal: any }) => {
             <Card.Text className="col-md-6">{animal.breeds.primary}</Card.Text>
           </div>
           <div className="row">
-            <Button type="button" variant="danger" onClick={handleFavorite}>
+            <Button
+              type="button"
+              variant="danger"
+              onClick={() => handleFavorite(animal)}
+            >
               Favorite
             </Button>
           </div>
