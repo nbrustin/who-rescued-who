@@ -12,7 +12,13 @@ const handleFavorite = (animal: any) => {
   alert(`${animal.name} added to favorites!`);
 };
 
-const Animal = ({ animal }: { animal: any }) => {
+const Animal = ({
+  animal,
+  isShowFavoriteButton,
+}: {
+  animal: any;
+  isShowFavoriteButton: boolean;
+}) => {
   const objectFitStyle = animal.photos.length !== 0 ? "cover" : "contain";
   const fallBackImageAnimal =
     animal.type.toLowerCase() === "dog" ? fallbackImageDog : fallbackImageCat;
@@ -46,13 +52,13 @@ const Animal = ({ animal }: { animal: any }) => {
             <Card.Text className="col-md-6">{animal.age}</Card.Text>
             <Card.Text className="col-md-6">{animal.breeds.primary}</Card.Text>
           </div>
-          <div className="row">
+          <div className={isShowFavoriteButton ? "row" : "row d-none"}>
             <Button
               type="button"
               variant="danger"
               onClick={() => handleFavorite(animal)}
             >
-              Favorite
+              Add to Favorites
             </Button>
           </div>
         </Card.Body>

@@ -76,7 +76,7 @@ const Search = () => {
           <Dropdown.Item eventKey="cat">Cat</Dropdown.Item>
         </DropdownButton>
 
-        <Animals posts={posts} />
+        <Animals posts={posts} isShowFavoriteButton={true} />
         <ReactPaginate
           breakLabel="..."
           nextLabel="next >"
