@@ -2,6 +2,9 @@ import React from "react";
 import { Card, Col, Button } from "react-bootstrap";
 import fallbackImageDog from "../Assets/no-image-found-dog.png";
 import fallbackImageCat from "../Assets/no-image-found-cat.gif";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart as heartSolid } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as heartOutline } from "@fortawesome/free-regular-svg-icons";
 
 const handleFavorite = (animal: any) => {
   const animalFavorites = JSON.parse(
@@ -15,9 +18,11 @@ const handleFavorite = (animal: any) => {
 const Animal = ({
   animal,
   isShowFavoriteButton,
+  favoritesIdArray,
 }: {
   animal: any;
   isShowFavoriteButton: boolean;
+  favoritesIdArray: any;
 }) => {
   const objectFitStyle = animal.photos.length !== 0 ? "cover" : "contain";
   const fallBackImageAnimal =
@@ -53,13 +58,13 @@ const Animal = ({
             <Card.Text className="col-md-6">{animal.breeds.primary}</Card.Text>
           </div>
           <div className={isShowFavoriteButton ? "row" : "row d-none"}>
-            <Button
-              type="button"
-              variant="danger"
+            <FontAwesomeIcon
+              icon={
+                favoritesIdArray.includes(animal.id) ? heartSolid : heartOutline
+              }
+              style={{ color: "red" }}
               onClick={() => handleFavorite(animal)}
-            >
-              Add to Favorites
-            </Button>
+            />
           </div>
         </Card.Body>
       </Card>

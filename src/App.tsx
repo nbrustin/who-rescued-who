@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Search from "./components/Search";
 import Favorites from "./components/Favorites";
 import Header from "./layouts/Header";
-import { Link, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
