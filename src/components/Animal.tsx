@@ -1,19 +1,10 @@
-import React from "react";
-import { Card, Col, Button } from "react-bootstrap";
+import React, { useState } from "react";
+import { Card, Col } from "react-bootstrap";
 import fallbackImageDog from "../Assets/no-image-found-dog.png";
 import fallbackImageCat from "../Assets/no-image-found-cat.gif";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as heartSolid } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as heartOutline } from "@fortawesome/free-regular-svg-icons";
-
-const handleFavorite = (animal: any) => {
-  const animalFavorites = JSON.parse(
-    sessionStorage.getItem("ANIMAL_FAVORITES") || "[]"
-  );
-  animalFavorites.push(animal);
-  sessionStorage.setItem("ANIMAL_FAVORITES", JSON.stringify(animalFavorites));
-  alert(`${animal.name} added to favorites!`);
-};
 
 const Animal = ({
   animal,
@@ -24,6 +15,24 @@ const Animal = ({
   isShowFavoriteButton: boolean;
   favoritesIdArray: any;
 }) => {
+  console.log(favoritesIdArray); //set state on the one animal?
+  const [favorite, setFavorite] = useState(
+    favoritesIdArray?.includes(animal.id)
+  );
+
+  const handleFavorite = (animal: any) => {
+    const animalFavorites = JSON.parse(
+      sessionStorage.getItem("ANIMAL_FAVORITES") || "[]"
+    );
+    //todo: add or remove favorite depending...
+    animalFavorites.push(animal);
+    sessionStorage.setItem("ANIMAL_FAVORITES", JSON.stringify(animalFavorites));
+    setFavorite(!favorite);
+    // alert(
+    //   `${animal.name} ${!favorite ? "added to" : "removed from"} favorites!`
+    // );
+  };
+
   const objectFitStyle = animal.photos.length !== 0 ? "cover" : "contain";
   const fallBackImageAnimal =
     animal.type.toLowerCase() === "dog" ? fallbackImageDog : fallbackImageCat;
@@ -57,11 +66,9 @@ const Animal = ({
             <Card.Text className="col-md-6">{animal.age}</Card.Text>
             <Card.Text className="col-md-6">{animal.breeds.primary}</Card.Text>
           </div>
-          <div className={isShowFavoriteButton ? "row" : "row d-none"}>
+          <div className={isShowFavoriteButton ? "row" : "row"}>
             <FontAwesomeIcon
-              icon={
-                favoritesIdArray.includes(animal.id) ? heartSolid : heartOutline
-              }
+              icon={favorite === true ? heartSolid : heartOutline}
               style={{ color: "red" }}
               onClick={() => handleFavorite(animal)}
             />
