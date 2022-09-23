@@ -8,11 +8,9 @@ import { faHeart as heartOutline } from "@fortawesome/free-regular-svg-icons";
 
 const Animal = ({
   animal,
-  isShowFavoriteButton,
   favoritesIdArray,
 }: {
   animal: any;
-  isShowFavoriteButton: boolean;
   favoritesIdArray: any;
 }) => {
   console.log(favoritesIdArray); //set state on the one animal?
@@ -21,21 +19,32 @@ const Animal = ({
   );
 
   const handleFavorite = (animal: any) => {
+    //need someway to know if heart is open or closed...ohhhh, i know from the favorite
+
     const animalFavorites = JSON.parse(
       sessionStorage.getItem("ANIMAL_FAVORITES") || "[]"
     );
-    //todo: add or remove favorite depending...
-    animalFavorites.push(animal);
-    sessionStorage.setItem("ANIMAL_FAVORITES", JSON.stringify(animalFavorites));
+    if (favorite) {
+      const newAnimalFavorites = animalFavorites.filter(
+        (favorite: any) => favorite.id !== animal.id
+      );
+      sessionStorage.setItem(
+        "ANIMAL_FAVORITES",
+        JSON.stringify(newAnimalFavorites)
+      );
+    } else {
+      const newAnimalFavorites: any[] = [...animalFavorites, animal];
+      sessionStorage.setItem(
+        "ANIMAL_FAVORITES",
+        JSON.stringify(newAnimalFavorites)
+      );
+    }
     setFavorite(!favorite);
-    // alert(
-    //   `${animal.name} ${!favorite ? "added to" : "removed from"} favorites!`
-    // );
   };
 
-  const objectFitStyle = animal.photos.length !== 0 ? "cover" : "contain";
+  const objectFitStyle = animal?.photos?.length !== 0 ? "cover" : "contain";
   const fallBackImageAnimal =
-    animal.type.toLowerCase() === "dog" ? fallbackImageDog : fallbackImageCat;
+    animal?.type?.toLowerCase() === "dog" ? fallbackImageDog : fallbackImageCat;
   return (
     <Col md={3} key={animal.id} className="my-4">
       <Card className="h-100" style={{ borderRadius: "8px" }}>
@@ -50,8 +59,8 @@ const Animal = ({
           }}
           variant="top"
           src={
-            animal.photos.length !== 0
-              ? animal.photos[0].large
+            animal?.photos?.length !== 0
+              ? animal?.photos[0].large
               : fallBackImageAnimal
           }
         />
@@ -66,12 +75,14 @@ const Animal = ({
             <Card.Text className="col-md-6">{animal.age}</Card.Text>
             <Card.Text className="col-md-6">{animal.breeds.primary}</Card.Text>
           </div>
-          <div className={isShowFavoriteButton ? "row" : "row"}>
-            <FontAwesomeIcon
-              icon={favorite === true ? heartSolid : heartOutline}
-              style={{ color: "red" }}
-              onClick={() => handleFavorite(animal)}
-            />
+          <div className="row">
+            <div className="col">
+              <FontAwesomeIcon
+                icon={favorite === true ? heartSolid : heartOutline}
+                style={{ color: "red" }}
+                onClick={() => handleFavorite(animal)}
+              />
+            </div>
           </div>
         </Card.Body>
       </Card>

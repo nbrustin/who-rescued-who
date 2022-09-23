@@ -6,16 +6,11 @@ type favorite = {
   id: string;
 };
 
+//i think this page should have the pagination...
+
 let favoritesIdArray: any = null;
-const Animals = ({
-  posts,
-  isShowFavoriteButton,
-}: {
-  posts: any;
-  isShowFavoriteButton: boolean;
-}) => {
+const Animals = ({ posts }: { posts: any }) => {
   useEffect(() => {
-    //get the favorites ids and pass it in as an array or dictionary
     const favorites = JSON.parse(
       sessionStorage.getItem("ANIMAL_FAVORITES") || "[]"
     );
@@ -27,13 +22,7 @@ const Animals = ({
     <>
       <Row>
         {posts.map((animal: any, index: number) => {
-          return (
-            <Animal
-              animal={animal}
-              isShowFavoriteButton={isShowFavoriteButton}
-              favoritesIdArray={favoritesIdArray}
-            />
-          );
+          return <Animal animal={animal} favoritesIdArray={favoritesIdArray} />;
         })}
       </Row>
     </>

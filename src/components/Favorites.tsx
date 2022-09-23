@@ -17,7 +17,7 @@ const Favorites = () => {
       <h3 className={favorites.length !== 0 ? "d-none mt-4" : "mt-4"}>
         No favorites added...yet!
       </h3>
-      <Animals posts={favorites} isShowFavoriteButton={false} />
+      <Animals posts={favorites} />
     </>
   );
 };
