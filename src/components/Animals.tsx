@@ -22,7 +22,13 @@ const Animals = ({ posts }: { posts: any }) => {
     <>
       <Row>
         {posts.map((animal: any, index: number) => {
-          return <Animal animal={animal} favoritesIdArray={favoritesIdArray} />;
+          return (
+            <Animal
+              key={animal.id}
+              animal={animal}
+              favoritesIdArray={favoritesIdArray}
+            />
+          );
         })}
       </Row>
     </>

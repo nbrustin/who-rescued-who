@@ -76,6 +76,11 @@ const Animal = ({
             <Card.Text className="col-md-6">{animal.breeds.primary}</Card.Text>
           </div>
           <div className="row">
+            <Card.Text className="col mb-2 text-center">
+              {Math.round(animal.distance)} miles away
+            </Card.Text>
+          </div>
+          <div className="row">
             <div className="col">
               <FontAwesomeIcon
                 icon={favorite === true ? heartSolid : heartOutline}
