@@ -125,8 +125,7 @@ const Search = () => {
           <div className="col-md-3">
             <InputGroup className="">
               <Form.Control
-                aria-label="Default"
-                aria-describedby="inputGroup-sizing-default"
+                placeholder="Enter Zip Code"
                 onChange={handleSearchChange}
               />
               <Button variant="success" onClick={search}>
