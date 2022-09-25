@@ -48,7 +48,7 @@ export const Post = {
   getPosts: (token: any, queryParams: object): Promise<PostType[]> =>
     requests.get(
       // `animals?limit=20&page=${currentPage}&type=${animal}&location=${location}`,
-      `animals?${queryParams}`,
+      `animals?${qs.stringify(queryParams)}`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }
