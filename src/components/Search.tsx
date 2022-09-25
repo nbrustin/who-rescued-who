@@ -1,6 +1,11 @@
-import React, { useEffect, useState, useRef } from "react";
-import { Dropdown, DropdownButton } from "react-bootstrap";
-import Form from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import {
+  Form,
+  InputGroup,
+  Button,
+  Dropdown,
+  DropdownButton,
+} from "react-bootstrap";
 import Animals from "./Animals";
 import FadeLoader from "react-spinners/FadeLoader";
 import { css } from "@emotion/react";
@@ -26,17 +31,11 @@ const Search = () => {
   const [posts, setPosts] = useState<PostType[]>([]);
   const [loading, setLoading] = useState(true);
   const [location, setLocation] = useState("");
-  // const [queryParams, setQueryParams] = useState({
-  //   limit: 20,
-  //   page: 1,
-  //   type: "dog",
-  // });
 
   useEffect(() => {
     Post.getAccess()
       .then((response: any) => {
         token = response.access_token;
-        debugger;
         Post.getPosts(token, queryParams).then((data: any) => {
           pageCount = data.pagination.total_pages;
           setPosts(data.animals);
@@ -62,12 +61,7 @@ const Search = () => {
 
   const handlePageClick = async (event: any) => {
     page = event.selected + 1;
-    debugger;
-    queryParams = {
-      limit: limit,
-      page: page,
-      type: animal,
-    };
+    queryParams.page = page;
 
     Post.getPosts(token, queryParams).then((data: any) => {
       pageCount = data.pagination.total_pages;
@@ -76,8 +70,11 @@ const Search = () => {
   };
 
   const handleSelect = (event: any) => {
+    setLoading(true);
+
     console.log(event);
     animal = event;
+    queryParams.type = event;
     Post.getPosts(token, queryParams).then((data: any) => {
       pageCount = data.pagination.total_pages;
       setPosts(data.animals);
@@ -95,9 +92,11 @@ const Search = () => {
 
   const search = () => {
     //make api with location parameter
-    console.log(location);
+    console.log("location:", location);
     if (location !== "") {
       queryParams.location = location;
+    } else {
+      delete queryParams.location;
     }
     debugger;
     Post.getPosts(token, queryParams).then((data: any) => {
@@ -115,18 +114,25 @@ const Search = () => {
           <div className="col-md-2">
             <DropdownButton
               id="dropdown-basic-button"
-              title="Animal"
+              title={animal}
               onSelect={handleSelect}
+              variant="success"
             >
               <Dropdown.Item eventKey="dog">Dog</Dropdown.Item>
               <Dropdown.Item eventKey="cat">Cat</Dropdown.Item>
             </DropdownButton>
           </div>
           <div className="col-md-3">
-            <input onChange={handleSearchChange} />
-            <button type="button" onClick={search}>
-              Search
-            </button>
+            <InputGroup className="">
+              <Form.Control
+                aria-label="Default"
+                aria-describedby="inputGroup-sizing-default"
+                onChange={handleSearchChange}
+              />
+              <Button variant="success" onClick={search}>
+                Search
+              </Button>
+            </InputGroup>
           </div>
         </div>
 

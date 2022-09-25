@@ -75,7 +75,7 @@ const Animal = ({
             <Card.Text className="col-md-6">{animal.age}</Card.Text>
             <Card.Text className="col-md-6">{animal.breeds.primary}</Card.Text>
           </div>
-          <div className="row">
+          <div className={animal.distance !== null ? "row" : "d-none"}>
             <Card.Text className="col mb-2 text-center">
               {Math.round(animal.distance)} miles away
             </Card.Text>

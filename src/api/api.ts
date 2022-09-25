@@ -1,14 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { PostType } from "./api.interface";
-import { useState } from "react";
-import { request } from "http";
-import { json } from "stream/consumers";
 
-let access = "";
-// const queryParams = {
-//   limit: 20,
-//   page: 1,
-// };
 var qs = require("qs");
 var data = qs.stringify({
   grant_type: "client_credentials",
