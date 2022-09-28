@@ -1,9 +1,13 @@
+.header {
+  color: #c52184;
+}
+
 ul {
   list-style-type: none;
   padding-left: 0;
-  color: green;
+  color: #c52184;
 }
 
 li > a {
-  color: #076407;
+  color: #c52184;
 }

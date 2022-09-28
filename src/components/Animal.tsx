@@ -5,6 +5,7 @@ import fallbackImageCat from "../Assets/no-image-found-cat.gif";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as heartSolid } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as heartOutline } from "@fortawesome/free-regular-svg-icons";
+import styles from "./animal.module.css";
 
 const Animal = ({
   animal,
@@ -13,11 +14,9 @@ const Animal = ({
   animal: any;
   favoritesIdArray: any;
 }) => {
-  console.log(favoritesIdArray); //set state on the one animal?
   const [favorite, setFavorite] = useState(
     favoritesIdArray?.includes(animal.id)
   );
-
   const handleFavorite = (animal: any) => {
     //need someway to know if heart is open or closed...ohhhh, i know from the favorite
 
@@ -50,13 +49,8 @@ const Animal = ({
       <Card className="h-100" style={{ borderRadius: "8px" }}>
         <Card.Img
           onClick={() => window.open(animal.url, "_blank")}
-          style={{
-            height: "40vh",
-            objectFit: objectFitStyle,
-            width: "100%",
-            cursor: "pointer",
-            padding: "10px",
-          }}
+          className={styles.image}
+          style={{ objectFit: objectFitStyle }}
           variant="top"
           src={
             animal?.photos?.length !== 0

@@ -12,6 +12,11 @@ import { css } from "@emotion/react";
 import ReactPaginate from "react-paginate";
 import { PostType } from "../api/api.interface";
 import { Post } from "../api/api";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import styles from "./search.module.css";
 
 //default parameters
 let token = "";
@@ -83,14 +88,14 @@ const Search = () => {
   };
 
   const handleSearchChange = (event: any) => {
-    debugger;
     const searchValue = event.target.value;
     console.log(searchValue);
 
     setLocation(event.target.value);
   };
 
-  const search = () => {
+  const search = (event: React.SyntheticEvent) => {
+    event.preventDefault();
     //make api with location parameter
     console.log("location:", location);
     if (location !== "") {
@@ -98,7 +103,6 @@ const Search = () => {
     } else {
       delete queryParams.location;
     }
-    debugger;
     Post.getPosts(token, queryParams).then((data: any) => {
       pageCount = data.pagination.total_pages;
       setPosts(data.animals);
@@ -110,28 +114,30 @@ const Search = () => {
   } else {
     return (
       <>
-        <div className="row">
+        <div className={`row ${styles.backgroundBanner}`}>
           <div className="col-md-2">
             <DropdownButton
               id="dropdown-basic-button"
               title={animal}
               onSelect={handleSelect}
-              variant="success"
+              variant="outline-light"
             >
               <Dropdown.Item eventKey="dog">Dog</Dropdown.Item>
               <Dropdown.Item eventKey="cat">Cat</Dropdown.Item>
             </DropdownButton>
           </div>
           <div className="col-md-3">
-            <InputGroup className="">
-              <Form.Control
-                placeholder="Enter Zip Code"
-                onChange={handleSearchChange}
-              />
-              <Button variant="success" onClick={search}>
-                Search
-              </Button>
-            </InputGroup>
+            <form onSubmit={search}>
+              <InputGroup className="">
+                <Form.Control
+                  placeholder="Enter Zip Code"
+                  onChange={handleSearchChange}
+                />
+                <Button type="submit" variant="outline-light">
+                  Search
+                </Button>
+              </InputGroup>
+            </form>
           </div>
         </div>
 

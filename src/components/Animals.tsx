@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Animal from "./Animal";
 import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
 
 type favorite = {
   id: string;
@@ -16,10 +17,9 @@ const Animals = ({ posts }: { posts: any }) => {
     );
 
     favoritesIdArray = favorites.map((favorite: favorite) => favorite.id);
-    console.log(favoritesIdArray);
   });
   return (
-    <>
+    <Container>
       <Row>
         {posts.map((animal: any, index: number) => {
           return (
@@ -31,7 +31,7 @@ const Animals = ({ posts }: { posts: any }) => {
           );
         })}
       </Row>
-    </>
+    </Container>
   );
 };
 
