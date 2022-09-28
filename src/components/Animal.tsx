@@ -18,8 +18,6 @@ const Animal = ({
     favoritesIdArray?.includes(animal.id)
   );
   const handleFavorite = (animal: any) => {
-    //need someway to know if heart is open or closed...ohhhh, i know from the favorite
-
     const animalFavorites = JSON.parse(
       sessionStorage.getItem("ANIMAL_FAVORITES") || "[]"
     );
@@ -59,10 +57,7 @@ const Animal = ({
           }
         />
         <Card.Body>
-          <Card.Title
-            className="text-center my-4"
-            style={{ color: "#076407", fontSize: "30px" }}
-          >
+          <Card.Title className={`text-center my-4 ${styles.title}`}>
             {animal.name}
           </Card.Title>
           <div className="row">

@@ -46,3 +46,7 @@
 .selected > a {
   padding: 6px;
 }
+
+body {
+  color: #1e2d24;
+}

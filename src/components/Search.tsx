@@ -12,10 +12,6 @@ import { css } from "@emotion/react";
 import ReactPaginate from "react-paginate";
 import { PostType } from "../api/api.interface";
 import { Post } from "../api/api";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import styles from "./search.module.css";
 
 //default parameters
@@ -96,8 +92,6 @@ const Search = () => {
 
   const search = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    //make api with location parameter
-    console.log("location:", location);
     if (location !== "") {
       queryParams.location = location;
     } else {

@@ -4,3 +4,8 @@
   cursor: pointer;
   padding: 10px;
 }
+
+.title {
+  color: #c52184;
+  font-size: 30px;
+}
