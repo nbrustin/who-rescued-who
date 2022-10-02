@@ -43,7 +43,7 @@ const Animal = ({
   const fallBackImageAnimal =
     animal?.type?.toLowerCase() === "dog" ? fallbackImageDog : fallbackImageCat;
   return (
-    <Col md={3} key={animal.id} className="my-4">
+    <Col sm={6} md={4} lg={3} key={animal.id} className="my-4">
       <Card className="h-100" style={{ borderRadius: "8px" }}>
         <Card.Img
           onClick={() => window.open(animal.url, "_blank")}
@@ -61,8 +61,8 @@ const Animal = ({
             {animal.name}
           </Card.Title>
           <div className="row">
-            <Card.Text className="col-md-6">{animal.age}</Card.Text>
-            <Card.Text className="col-md-6">{animal.breeds.primary}</Card.Text>
+            <Card.Text className="col-lg-6">{animal.age}</Card.Text>
+            <Card.Text className="col-lg-6">{animal.breeds.primary}</Card.Text>
           </div>
           <div className={animal.distance !== null ? "row" : "d-none"}>
             <Card.Text className="col mb-2 text-center">

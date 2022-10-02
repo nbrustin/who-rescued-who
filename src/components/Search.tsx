@@ -18,6 +18,7 @@ import styles from "./search.module.css";
 let token = "";
 let limit = 20;
 let animal = "dog";
+let sortBy = "distance";
 let pageCount = 0;
 let page = 1;
 
@@ -37,6 +38,7 @@ const Search = () => {
     Post.getAccess()
       .then((response: any) => {
         token = response.access_token;
+        debugger;
         Post.getPosts(token, queryParams).then((data: any) => {
           pageCount = data.pagination.total_pages;
           setPosts(data.animals);
@@ -70,17 +72,25 @@ const Search = () => {
     });
   };
 
-  const handleSelect = (event: any) => {
-    setLoading(true);
-
-    console.log(event);
+  const handleAnimalTypeSelect = (event: any) => {
     animal = event;
     queryParams.type = event;
     Post.getPosts(token, queryParams).then((data: any) => {
       pageCount = data.pagination.total_pages;
       setPosts(data.animals);
-      setLoading(false);
     });
+  };
+
+  const handleSortBySelect = (event: any) => {
+    //only allow sort if there is a valid location
+    if (queryParams.location !== undefined) {
+      sortBy = event;
+      queryParams.sort = event;
+      Post.getPosts(token, queryParams).then((data: any) => {
+        pageCount = data.pagination.total_pages;
+        setPosts(data.animals);
+      });
+    }
   };
 
   const handleSearchChange = (event: any) => {
@@ -109,18 +119,18 @@ const Search = () => {
     return (
       <>
         <div className={`row ${styles.backgroundBanner}`}>
-          <div className="col-md-2">
+          <div className="col-lg-1">
             <DropdownButton
               id="dropdown-basic-button"
               title={animal}
-              onSelect={handleSelect}
+              onSelect={handleAnimalTypeSelect}
               variant="outline-light"
             >
               <Dropdown.Item eventKey="dog">Dog</Dropdown.Item>
               <Dropdown.Item eventKey="cat">Cat</Dropdown.Item>
             </DropdownButton>
           </div>
-          <div className="col-md-3">
+          <div className="col-lg-3">
             <form onSubmit={search}>
               <InputGroup className="">
                 <Form.Control
@@ -132,6 +142,19 @@ const Search = () => {
                 </Button>
               </InputGroup>
             </form>
+          </div>
+          <div className="col-lg-2">
+            <DropdownButton
+              id="dropdown-basic-button"
+              title={`sort by: ${sortBy}`}
+              onSelect={handleSortBySelect}
+              variant="outline-light"
+            >
+              <Dropdown.Item eventKey="distance">
+                Sort by: Distance
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="random">Sort by: Random</Dropdown.Item>
+            </DropdownButton>
           </div>
         </div>
 
