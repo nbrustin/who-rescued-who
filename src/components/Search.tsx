@@ -18,15 +18,31 @@ import styles from "./search.module.css";
 let token = "";
 let limit = 20;
 let animal = "dog";
-let sortBy = "distance";
+let sort = "distance";
 let pageCount = 0;
 let page = 1;
 
+type queryParamsType = {
+  limit: number;
+  page: number;
+  type: string;
+  location?: string;
+  sort?: string;
+};
+
 //params object
-let queryParams: any = {
+let queryParams: queryParamsType = {
   limit: limit,
   page: page,
   type: animal,
+};
+
+const sortByKeys: { [key: string]: string } = {
+  distance: "Closest",
+  "-distance": "Furthest",
+  recent: "Newest",
+  "-recent": "Oldest",
+  random: "random",
 };
 
 const Search = () => {
@@ -51,6 +67,14 @@ const Search = () => {
     return () => {};
   }, []);
 
+  const getPosts = () => {
+    debugger;
+    Post.getPosts(token, queryParams).then((data: any) => {
+      pageCount = data.pagination.total_pages;
+      setPosts(data.animals);
+    });
+  };
+
   const override = css`
     display: block;
     margin: 0 auto;
@@ -65,38 +89,27 @@ const Search = () => {
   const handlePageClick = async (event: any) => {
     page = event.selected + 1;
     queryParams.page = page;
-
-    Post.getPosts(token, queryParams).then((data: any) => {
-      pageCount = data.pagination.total_pages;
-      setPosts(data.animals);
-    });
+    getPosts();
   };
 
   const handleAnimalTypeSelect = (event: any) => {
     animal = event;
     queryParams.type = event;
-    Post.getPosts(token, queryParams).then((data: any) => {
-      pageCount = data.pagination.total_pages;
-      setPosts(data.animals);
-    });
+    getPosts();
   };
 
   const handleSortBySelect = (event: any) => {
     //only allow sort if there is a valid location
     if (queryParams.location !== undefined) {
-      sortBy = event;
+      sort = event;
       queryParams.sort = event;
-      Post.getPosts(token, queryParams).then((data: any) => {
-        pageCount = data.pagination.total_pages;
-        setPosts(data.animals);
-      });
+      getPosts();
     }
   };
 
   const handleSearchChange = (event: any) => {
     const searchValue = event.target.value;
     console.log(searchValue);
-
     setLocation(event.target.value);
   };
 
@@ -104,13 +117,13 @@ const Search = () => {
     event.preventDefault();
     if (location !== "") {
       queryParams.location = location;
+      //add sort to query params
+      queryParams.sort = sort;
     } else {
       delete queryParams.location;
+      delete queryParams.sort;
     }
-    Post.getPosts(token, queryParams).then((data: any) => {
-      pageCount = data.pagination.total_pages;
-      setPosts(data.animals);
-    });
+    getPosts();
   };
 
   if (loading === true) {
@@ -144,15 +157,21 @@ const Search = () => {
             </form>
           </div>
           <div className="col-lg-2">
+            {/* disable if no valid location set */}
             <DropdownButton
               id="dropdown-basic-button"
-              title={`sort by: ${sortBy}`}
+              title={`sort by: ${sortByKeys[sort]}`}
               onSelect={handleSortBySelect}
               variant="outline-light"
             >
               <Dropdown.Item eventKey="distance">
-                Sort by: Distance
+                Sort by: Closest
               </Dropdown.Item>
+              <Dropdown.Item eventKey="-distance">
+                Sort by: Furthest
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="recent">Sort by: Newest</Dropdown.Item>
+              <Dropdown.Item eventKey="-recent">Sort by: Oldest</Dropdown.Item>
               <Dropdown.Item eventKey="random">Sort by: Random</Dropdown.Item>
             </DropdownButton>
           </div>
