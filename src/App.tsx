@@ -12,7 +12,7 @@ function App() {
       <Container>
         <Header />
         <Routes>
-          <Route path="/who-rescued-who" element={<Search />} />
+          <Route path="/" element={<Search />} />
           <Route path="/favorites" element={<Favorites />} />
         </Routes>
       </Container>

@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <Navbar expand="lg">
       <Container>
-        <Navbar.Brand as={Link} to="/who-rescued-who" className="brand">
+        <Navbar.Brand as={Link} to="/" className="brand">
           Who Rescued Who?
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -17,7 +17,7 @@ const Header = () => {
           <Nav className="me-auto ">
             <Nav.Link
               as={Link}
-              to="/who-rescued-who"
+              to="/"
               className="brandColor"
               style={{ fontWeight: "700" }}
             >
