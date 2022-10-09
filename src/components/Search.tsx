@@ -69,9 +69,11 @@ const Search = () => {
 
   const getPosts = () => {
     debugger;
+    setLoading(true);
     Post.getPosts(token, queryParams).then((data: any) => {
       pageCount = data.pagination.total_pages;
       setPosts(data.animals);
+      setLoading(false);
     });
   };
 
@@ -126,71 +128,68 @@ const Search = () => {
     getPosts();
   };
 
-  if (loading === true) {
-    return <FadeLoader {...FadeLoaderProps} />;
-  } else {
-    return (
-      <>
-        <div className={`row ${styles.backgroundBanner}`}>
-          <div className="col-lg-1">
-            <DropdownButton
-              id="dropdown-basic-button"
-              title={animal}
-              onSelect={handleAnimalTypeSelect}
-              variant="outline-light"
-            >
-              <Dropdown.Item eventKey="dog">Dog</Dropdown.Item>
-              <Dropdown.Item eventKey="cat">Cat</Dropdown.Item>
-            </DropdownButton>
-          </div>
-          <div className="col-lg-3">
-            <form onSubmit={search}>
-              <InputGroup className="">
-                <Form.Control
-                  placeholder="Enter Zip Code"
-                  onChange={handleSearchChange}
-                />
-                <Button type="submit" variant="outline-light">
-                  Search
-                </Button>
-              </InputGroup>
-            </form>
-          </div>
-          <div className="col-lg-2">
-            {/* disable if no valid location set */}
-            <DropdownButton
-              id="dropdown-basic-button"
-              title={`sort by: ${sortByKeys[sort]}`}
-              onSelect={handleSortBySelect}
-              variant="outline-light"
-            >
-              <Dropdown.Item eventKey="distance">
-                Sort by: Closest
-              </Dropdown.Item>
-              <Dropdown.Item eventKey="-distance">
-                Sort by: Furthest
-              </Dropdown.Item>
-              <Dropdown.Item eventKey="recent">Sort by: Newest</Dropdown.Item>
-              <Dropdown.Item eventKey="-recent">Sort by: Oldest</Dropdown.Item>
-              <Dropdown.Item eventKey="random">Sort by: Random</Dropdown.Item>
-            </DropdownButton>
-          </div>
+  return (
+    <>
+      <div className={`row ${styles.backgroundBanner}`}>
+        <div className="col-lg-1">
+          <DropdownButton
+            id="dropdown-basic-button"
+            title={animal}
+            onSelect={handleAnimalTypeSelect}
+            variant="outline-light"
+          >
+            <Dropdown.Item eventKey="dog">Dog</Dropdown.Item>
+            <Dropdown.Item eventKey="cat">Cat</Dropdown.Item>
+          </DropdownButton>
         </div>
-
+        <div className="col-lg-3">
+          <form onSubmit={search}>
+            <InputGroup className="">
+              <Form.Control
+                placeholder="Enter Zip Code"
+                onChange={handleSearchChange}
+              />
+              <Button type="submit" variant="outline-light">
+                Search
+              </Button>
+            </InputGroup>
+          </form>
+        </div>
+        <div className="col-lg-2">
+          <DropdownButton
+            id="dropdown-basic-button"
+            title={`sort by: ${sortByKeys[sort]}`}
+            onSelect={handleSortBySelect}
+            variant="outline-light"
+          >
+            <Dropdown.Item eventKey="distance">Sort by: Closest</Dropdown.Item>
+            <Dropdown.Item eventKey="-distance">
+              Sort by: Furthest
+            </Dropdown.Item>
+            <Dropdown.Item eventKey="recent">Sort by: Newest</Dropdown.Item>
+            <Dropdown.Item eventKey="-recent">Sort by: Oldest</Dropdown.Item>
+            <Dropdown.Item eventKey="random">Sort by: Random</Dropdown.Item>
+          </DropdownButton>
+        </div>
+      </div>
+      {loading === true ? (
+        <FadeLoader {...FadeLoaderProps} />
+      ) : (
         <Animals posts={posts} />
-        <ReactPaginate
-          breakLabel="..."
-          nextLabel="next >"
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
-          pageCount={pageCount}
-          previousLabel="< previous"
-          containerClassName={"pagination"}
-          activeClassName={"active"}
-          activeLinkClassName={"active"}
-        />
-      </>
-    );
-  }
+      )}
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel="next >"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        pageCount={pageCount}
+        previousLabel="< previous"
+        containerClassName={"pagination"}
+        activeClassName={"active"}
+        activeLinkClassName={"active"}
+      />
+    </>
+  );
 };
+// };
 export default Search;
