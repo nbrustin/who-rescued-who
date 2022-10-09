@@ -6,6 +6,10 @@ import {
   Dropdown,
   DropdownButton,
 } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import Animals from "./Animals";
 import FadeLoader from "react-spinners/FadeLoader";
 import { css } from "@emotion/react";
@@ -130,48 +134,58 @@ const Search = () => {
 
   return (
     <>
-      <div className={`row ${styles.backgroundBanner}`}>
-        <div className="col-lg-1">
-          <DropdownButton
-            id="dropdown-basic-button"
-            title={animal}
-            onSelect={handleAnimalTypeSelect}
-            variant="outline-light"
-          >
-            <Dropdown.Item eventKey="dog">Dog</Dropdown.Item>
-            <Dropdown.Item eventKey="cat">Cat</Dropdown.Item>
-          </DropdownButton>
-        </div>
-        <div className="col-lg-3">
-          <form onSubmit={search}>
-            <InputGroup className="">
-              <Form.Control
-                placeholder="Enter Zip Code"
-                onChange={handleSearchChange}
-              />
-              <Button type="submit" variant="outline-light">
-                Search
-              </Button>
-            </InputGroup>
-          </form>
-        </div>
-        <div className="col-lg-2">
-          <DropdownButton
-            id="dropdown-basic-button"
-            title={`sort by: ${sortByKeys[sort]}`}
-            onSelect={handleSortBySelect}
-            variant="outline-light"
-          >
-            <Dropdown.Item eventKey="distance">Sort by: Closest</Dropdown.Item>
-            <Dropdown.Item eventKey="-distance">
-              Sort by: Furthest
-            </Dropdown.Item>
-            <Dropdown.Item eventKey="recent">Sort by: Newest</Dropdown.Item>
-            <Dropdown.Item eventKey="-recent">Sort by: Oldest</Dropdown.Item>
-            <Dropdown.Item eventKey="random">Sort by: Random</Dropdown.Item>
-          </DropdownButton>
-        </div>
-      </div>
+      <Navbar
+        expand="lg"
+        variant="dark"
+        className={`${styles.backgroundBanner} `}
+      >
+        <Container>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <DropdownButton
+                id="dropdown-basic-button"
+                title={animal}
+                onSelect={handleAnimalTypeSelect}
+                variant="outline-light"
+              >
+                {" "}
+                <Dropdown.Item eventKey="dog">dog</Dropdown.Item>
+                <Dropdown.Item eventKey="cat">cat</Dropdown.Item>
+              </DropdownButton>
+              <form className="mx-lg-3 my-2 my-lg-0" onSubmit={search}>
+                <InputGroup className="">
+                  <Form.Control
+                    placeholder="Enter Zip Code"
+                    onChange={handleSearchChange}
+                  />
+                  <Button type="submit" variant="outline-light">
+                    Search
+                  </Button>
+                </InputGroup>
+              </form>
+              <DropdownButton
+                id="dropdown-basic-button"
+                title={`sort by: ${sortByKeys[sort]}`}
+                onSelect={handleSortBySelect}
+                variant="outline-light"
+              >
+                <Dropdown.Item eventKey="distance">
+                  Sort by: Closest
+                </Dropdown.Item>
+                <Dropdown.Item eventKey="-distance">
+                  Sort by: Furthest
+                </Dropdown.Item>
+                <Dropdown.Item eventKey="recent">Sort by: Newest</Dropdown.Item>
+                <Dropdown.Item eventKey="-recent">
+                  Sort by: Oldest
+                </Dropdown.Item>
+                <Dropdown.Item eventKey="random">Sort by: Random</Dropdown.Item>
+              </DropdownButton>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
       {loading === true ? (
         <FadeLoader {...FadeLoaderProps} />
       ) : (
