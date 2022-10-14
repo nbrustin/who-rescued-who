@@ -9,7 +9,6 @@ import {
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import Animals from "./Animals";
 import FadeLoader from "react-spinners/FadeLoader";
 import { css } from "@emotion/react";
@@ -17,6 +16,8 @@ import ReactPaginate from "react-paginate";
 import { PostType } from "../api/api.interface";
 import { Post } from "../api/api";
 import styles from "./search.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFilter as filter } from "@fortawesome/free-solid-svg-icons";
 
 //default parameters
 let token = "";
@@ -140,7 +141,11 @@ const Search = () => {
         className={`${styles.backgroundBanner} `}
       >
         <Container>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle aria-controls="basic-navbar-nav">
+            <span>
+              <FontAwesomeIcon icon={filter} />
+            </span>
+          </Navbar.Toggle>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <DropdownButton
