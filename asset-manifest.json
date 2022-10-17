@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/who-rescued-who/static/css/main.66b9ac58.css",
-    "main.js": "/who-rescued-who/static/js/main.4444b075.js",
+    "main.css": "/who-rescued-who/static/css/main.695a170e.css",
+    "main.js": "/who-rescued-who/static/js/main.5b22789f.js",
     "static/js/787.9067e721.chunk.js": "/who-rescued-who/static/js/787.9067e721.chunk.js",
     "static/media/no-image-found-dog.png": "/who-rescued-who/static/media/no-image-found-dog.0cdb3c857e660e46eb73.png",
     "index.html": "/who-rescued-who/index.html",
-    "main.66b9ac58.css.map": "/who-rescued-who/static/css/main.66b9ac58.css.map",
-    "main.4444b075.js.map": "/who-rescued-who/static/js/main.4444b075.js.map",
+    "main.695a170e.css.map": "/who-rescued-who/static/css/main.695a170e.css.map",
+    "main.5b22789f.js.map": "/who-rescued-who/static/js/main.5b22789f.js.map",
     "787.9067e721.chunk.js.map": "/who-rescued-who/static/js/787.9067e721.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.66b9ac58.css",
-    "static/js/main.4444b075.js"
+    "static/css/main.695a170e.css",
+    "static/js/main.5b22789f.js"
   ]
 }
