@@ -5,7 +5,13 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import "./Header.css";
 
-const Header = () => {
+const Header = ({
+  toggleTheme,
+  darkTheme,
+}: {
+  toggleTheme: () => void;
+  darkTheme: boolean;
+}) => {
   return (
     <Navbar expand="lg">
       <Container>
@@ -25,6 +31,9 @@ const Header = () => {
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
+        <button onClick={toggleTheme}>
+          {darkTheme ? "Enable light theme" : "Enable dark theme"}
+        </button>
       </Container>
     </Navbar>
   );

@@ -6,6 +6,11 @@
 }
 
 .title {
-  color: #c52184;
+  color: var(--darkPink);
+  font-size: 30px;
+}
+
+.titleDark {
+  color: var(--lightPink);
   font-size: 30px;
 }

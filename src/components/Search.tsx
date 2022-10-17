@@ -56,10 +56,10 @@ const Search = () => {
   const [location, setLocation] = useState("");
 
   useEffect(() => {
+    console.log("clientId", process.env.REACT_APP_CLIENT_ID);
     Post.getAccess()
       .then((response: any) => {
         token = response.access_token;
-        debugger;
         Post.getPosts(token, queryParams).then((data: any) => {
           pageCount = data.pagination.total_pages;
           setPosts(data.animals);
@@ -73,7 +73,6 @@ const Search = () => {
   }, []);
 
   const getPosts = () => {
-    debugger;
     setLoading(true);
     Post.getPosts(token, queryParams).then((data: any) => {
       pageCount = data.pagination.total_pages;

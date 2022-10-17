@@ -27,7 +27,8 @@ const requests = {
         },
         data: data,
       })
-      .then(responseBody),
+      .then(responseBody)
+      .catch((responseBody) => console.log(responseBody)),
   get: (url: string, header: any) =>
     instance.get(url, header).then(responseBody),
   post: (url: string, body: {}) => instance.post(url, body).then(responseBody),

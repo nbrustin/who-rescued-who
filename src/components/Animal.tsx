@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Card, Col } from "react-bootstrap";
 import fallbackImageDog from "../Assets/no-image-found-dog.png";
 import fallbackImageCat from "../Assets/no-image-found-cat.gif";
@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as heartSolid } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as heartOutline } from "@fortawesome/free-regular-svg-icons";
 import styles from "./animal.module.css";
+import { ThemeContext } from "../App";
 
 const Animal = ({
   animal,
@@ -14,6 +15,12 @@ const Animal = ({
   animal: any;
   favoritesIdArray: any;
 }) => {
+  const darkTheme = useContext(ThemeContext);
+  const themeStyles = {
+    backgroundColor: darkTheme ? "#333" : "#fff",
+    color: darkTheme ? "#e1e1e1" : "#1e2d24",
+    borderRadius: "8px",
+  };
   const [favorite, setFavorite] = useState(
     favoritesIdArray?.includes(animal.id)
   );
@@ -44,7 +51,8 @@ const Animal = ({
     animal?.type?.toLowerCase() === "dog" ? fallbackImageDog : fallbackImageCat;
   return (
     <Col sm={6} md={4} lg={3} key={animal.id} className="my-4">
-      <Card className="h-100" style={{ borderRadius: "8px" }}>
+      {/* <Card className="h-100" style={{ borderRadius: "8px" }}> */}
+      <Card className="h-100" style={themeStyles}>
         <Card.Img
           onClick={() => window.open(animal.url, "_blank")}
           className={styles.image}
@@ -57,7 +65,11 @@ const Animal = ({
           }
         />
         <Card.Body>
-          <Card.Title className={`text-center my-4 ${styles.title}`}>
+          <Card.Title
+            className={`text-center my-4 ${
+              darkTheme ? styles.titleDark : styles.title
+            }`}
+          >
             {animal.name}
           </Card.Title>
           <div className="row">
