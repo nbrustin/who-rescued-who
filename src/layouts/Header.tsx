@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import FormCheck from "react-bootstrap/FormCheck";
 import "./Header.css";
 
 const Header = ({
@@ -13,9 +14,14 @@ const Header = ({
   darkTheme: boolean;
 }) => {
   return (
-    <Navbar expand="lg">
+    <Navbar style={{ color: darkTheme ? "#dba9c7" : "#c52184" }} expand="lg">
       <Container>
-        <Navbar.Brand as={Link} to="/who-rescued-who" className="brand">
+        <Navbar.Brand
+          as={Link}
+          to="/who-rescued-who"
+          style={{ color: darkTheme ? "#dba9c7" : "#c52184" }}
+          className="brand"
+        >
           Who Rescued Who?
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -24,16 +30,23 @@ const Header = ({
             <Nav.Link
               as={Link}
               to="/favorites"
-              className="brandColor"
-              style={{ fontWeight: "700" }}
+              style={{
+                color: darkTheme ? "#dba9c7" : "#c52184",
+                fontWeight: "700",
+              }}
             >
               Favorites
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
-        <button onClick={toggleTheme}>
-          {darkTheme ? "Enable light theme" : "Enable dark theme"}
-        </button>
+        <FormCheck
+          id="darkMode"
+          className="ml-10"
+          type="switch"
+          checked={darkTheme}
+          onClick={toggleTheme}
+          label="Dark Mode"
+        ></FormCheck>
       </Container>
     </Navbar>
   );

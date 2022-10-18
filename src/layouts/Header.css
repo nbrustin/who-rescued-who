@@ -1,12 +1,7 @@
 .brand {
-  color: #c52184 !important;
   font-weight: 600;
   font-family: serif;
   font-size: x-large;
-}
-
-.header {
-  color: #c52184;
 }
 
 ul {
@@ -19,6 +14,11 @@ li > a {
   color: #c52184;
 }
 
-.brandColor {
-  color: #c52184 !important;
+.form-check {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#darkMode {
+  margin-left: 10px;
 }
