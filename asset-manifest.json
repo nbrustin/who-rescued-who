@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/who-rescued-who/static/css/main.ce6031db.css",
-    "main.js": "/who-rescued-who/static/js/main.9ab825b0.js",
+    "main.js": "/who-rescued-who/static/js/main.65d3aacc.js",
     "static/js/787.9067e721.chunk.js": "/who-rescued-who/static/js/787.9067e721.chunk.js",
     "static/media/no-image-found-dog.png": "/who-rescued-who/static/media/no-image-found-dog.0cdb3c857e660e46eb73.png",
     "index.html": "/who-rescued-who/index.html",
     "main.ce6031db.css.map": "/who-rescued-who/static/css/main.ce6031db.css.map",
-    "main.9ab825b0.js.map": "/who-rescued-who/static/js/main.9ab825b0.js.map",
+    "main.65d3aacc.js.map": "/who-rescued-who/static/js/main.65d3aacc.js.map",
     "787.9067e721.chunk.js.map": "/who-rescued-who/static/js/787.9067e721.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ce6031db.css",
-    "static/js/main.9ab825b0.js"
+    "static/js/main.65d3aacc.js"
   ]
 }
