@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as heartSolid } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as heartOutline } from "@fortawesome/free-regular-svg-icons";
 import styles from "./animal.module.css";
-import { ThemeContext } from "../App";
+import { useTheme } from "../context/ThemeContext";
 
 const Animal = ({
   animal,
@@ -15,7 +15,8 @@ const Animal = ({
   animal: any;
   favoritesIdArray: any;
 }) => {
-  const darkTheme = useContext(ThemeContext);
+  const darkTheme = useTheme();
+  //refactor this to make it less clunky
   const themeStyles = {
     backgroundColor: darkTheme ? "#333" : "#fff",
     color: darkTheme ? "#e1e1e1" : "#1e2d24",

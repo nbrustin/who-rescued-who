@@ -4,15 +4,12 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import FormCheck from "react-bootstrap/FormCheck";
+import { useTheme, useThemeUpdate } from "../context/ThemeContext";
 import "./Header.css";
 
-const Header = ({
-  toggleTheme,
-  darkTheme,
-}: {
-  toggleTheme: () => void;
-  darkTheme: boolean;
-}) => {
+const Header = () => {
+  const darkTheme = useTheme();
+  const toggleTheme = useThemeUpdate();
   return (
     <Navbar style={{ color: darkTheme ? "#dba9c7" : "#c52184" }} expand="lg">
       <Container>
@@ -44,7 +41,7 @@ const Header = ({
           className="ml-10"
           type="switch"
           checked={darkTheme}
-          onClick={toggleTheme}
+          onChange={toggleTheme}
           label="Dark Mode"
         ></FormCheck>
       </Container>
